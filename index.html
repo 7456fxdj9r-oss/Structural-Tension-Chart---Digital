@@ -12,7 +12,6 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* ── Midnight Gold Elite Palette ── */
     --navy-950: #020617;
     --navy-900: #0F172A;
     --navy-800: #1E293B;
@@ -30,8 +29,6 @@
     --error: #EF4444;
     --error-light: #F87171;
     --info: #3B82F6;
-
-    /* ── Effects ── */
     --shadow-soft: 0 4px 20px -2px rgba(15, 23, 42, 0.5);
     --shadow-glow: 0 0 15px rgba(245, 158, 11, 0.3);
     --shadow-glow-lg: 0 0 30px rgba(245, 158, 11, 0.4);
@@ -39,8 +36,6 @@
     --glass-bg: rgba(255,255,255,0.04);
     --glass-border: rgba(255,255,255,0.18);
     --glass-bg-hover: rgba(255,255,255,0.07);
-
-    /* ── Spacing ── */
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 24px;
@@ -55,12 +50,8 @@
     min-height: 100vh;
     font-size: 18px;
   }
+  h1, h2, h3, h4 { font-family: 'Montserrat', 'Cal Sans', 'Inter', sans-serif; }
 
-  h1, h2, h3, h4 {
-    font-family: 'Montserrat', 'Cal Sans', 'Inter', sans-serif;
-  }
-
-  /* ── Floating background particles (subtle) ── */
   body::before {
     content: '';
     position: fixed;
@@ -74,273 +65,194 @@
 
   /* ── Header ── */
   .app-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     padding: 18px 32px;
     background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
   }
   .app-header h1 {
-    font-size: 1.4rem;
-    font-weight: 800;
+    font-size: 1.4rem; font-weight: 800;
     background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
-  .app-header p {
-    font-size: 0.85rem;
-    color: var(--slate-400);
-    margin-top: 2px;
-  }
+  .app-header p { font-size: 0.85rem; color: var(--slate-400); margin-top: 2px; }
 
   .btn-print {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: var(--gold-500);
-    color: var(--navy-900);
-    border: none;
-    border-radius: var(--radius-full);
-    font-size: 1rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-glow);
-    min-height: 48px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px; background: var(--gold-500); color: var(--navy-900);
+    border: none; border-radius: var(--radius-full);
+    font-size: 1rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    cursor: pointer; transition: all 0.2s ease;
+    box-shadow: var(--shadow-glow); min-height: 48px;
   }
-  .btn-print:hover {
-    background: var(--gold-400);
-    box-shadow: var(--shadow-glow-lg);
-    transform: scale(1.02);
-  }
+  .btn-print:hover { background: var(--gold-400); box-shadow: var(--shadow-glow-lg); transform: scale(1.02); }
   .btn-print:active { transform: scale(0.95); }
   .btn-print svg { width: 20px; height: 20px; }
 
   /* ── Layout ── */
   .app-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    min-height: calc(100vh - 72px);
-    position: relative;
-    z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    min-height: calc(100vh - 72px); position: relative; z-index: 1;
   }
-  .form-panel {
-    padding: 32px;
-    overflow-y: auto;
-    max-height: calc(100vh - 72px);
-  }
+  .form-panel { padding: 32px; overflow-y: auto; max-height: calc(100vh - 72px); }
   .chart-panel {
-    padding: 32px;
-    background: var(--navy-900);
+    padding: 32px; background: var(--navy-900);
     border-left: 1px solid var(--glass-border);
-    overflow-y: auto;
-    max-height: calc(100vh - 72px);
+    overflow-y: auto; max-height: calc(100vh - 72px);
   }
 
-  /* ── Glassmorphism Form Cards ── */
+  /* ── Form Cards ── */
   .form-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow-soft);
-    transition: border-color 0.2s;
+    background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+    padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow-soft); transition: border-color 0.2s;
   }
-  .form-card:hover {
-    border-color: rgba(255,255,255,0.25);
-  }
-  .form-card h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 18px;
-  }
-  .form-card h2 .step-num {
-    color: var(--gold-500);
-    margin-right: 4px;
-  }
+  .form-card:hover { border-color: rgba(255,255,255,0.25); }
+  .form-card h2 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 18px; }
+  .form-card h2 .step-num { color: var(--gold-500); margin-right: 4px; }
   .form-card label {
-    display: block;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--slate-400);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
+    display: block; font-size: 0.78rem; font-weight: 700; color: var(--slate-400);
+    margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.8px;
   }
-  .form-card textarea,
-  .form-card input[type="text"],
-  .form-card input[type="date"] {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--navy-600);
-    border-radius: var(--radius-sm);
-    font-size: 1.05rem;
-    font-family: 'Open Sans', system-ui, sans-serif;
-    color: #fff;
-    background: var(--navy-900);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    resize: vertical;
-    min-height: 48px;
+  .form-card textarea, .form-card input[type="text"], .form-card input[type="date"] {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--navy-600);
+    border-radius: var(--radius-sm); font-size: 1.05rem;
+    font-family: 'Open Sans', system-ui, sans-serif; color: #fff;
+    background: var(--navy-900); transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical; min-height: 48px;
   }
-  .form-card textarea::placeholder,
-  .form-card input::placeholder {
-    color: var(--slate-500);
-  }
-  .form-card textarea:focus,
-  .form-card input:focus {
-    outline: none;
-    border-color: var(--gold-500);
-    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  .form-card textarea::placeholder, .form-card input::placeholder { color: var(--slate-500); }
+  .form-card textarea:focus, .form-card input:focus {
+    outline: none; border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
   }
   .form-card textarea { min-height: 110px; }
+  .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
 
-  /* ── Meta fields ── */
-  .meta-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 18px;
-  }
-
-  /* ── Action step input row ── */
-  .action-input-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
+  /* ── Action input row ── */
+  .action-input-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 18px; flex-wrap: wrap; }
   .action-input-row .field-text { flex: 1; min-width: 150px; }
   .action-input-row .field-date { width: 160px; }
   .btn-add {
-    padding: 12px 22px;
-    background: var(--gold-500);
-    color: var(--navy-900);
-    border: none;
-    border-radius: var(--radius-full);
-    font-size: 0.9rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
-    box-shadow: var(--shadow-glow);
-    min-height: 48px;
+    padding: 12px 22px; background: var(--gold-500); color: var(--navy-900);
+    border: none; border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; cursor: pointer; white-space: nowrap;
+    transition: all 0.2s; box-shadow: var(--shadow-glow); min-height: 48px;
   }
   .btn-add:hover { background: var(--gold-400); box-shadow: var(--shadow-glow-lg); transform: scale(1.02); }
   .btn-add:active { transform: scale(0.95); }
 
-  /* ── Action step list ── */
+  /* ── Action list ── */
   .action-list { list-style: none; }
   .action-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    background: var(--navy-800);
-    border: 1px solid var(--navy-700);
-    border-radius: var(--radius-sm);
-    margin-bottom: 8px;
-    transition: all 0.2s;
+    background: var(--navy-800); border: 1px solid var(--navy-700);
+    border-radius: var(--radius-sm); margin-bottom: 8px; padding: 12px 14px; transition: all 0.2s;
   }
-  .action-item.completed {
-    background: rgba(34,197,94,0.08);
-    border-color: rgba(34,197,94,0.3);
-  }
+  .action-item.completed { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
   .action-item.completed .action-text { text-decoration: line-through; color: var(--slate-500); }
-  .action-item .drag-handle {
-    cursor: grab;
-    color: var(--slate-500);
-    font-size: 1.1rem;
-    user-select: none;
-    line-height: 1;
+  .action-item-main {
+    display: flex; align-items: center; gap: 12px;
   }
+  .action-item .drag-handle { cursor: grab; color: var(--slate-500); font-size: 1.1rem; user-select: none; line-height: 1; }
   .action-item .action-check {
-    width: 22px;
-    height: 22px;
-    accent-color: var(--gold-500);
-    cursor: pointer;
-    flex-shrink: 0;
-    min-width: 22px;
-    min-height: 22px;
+    width: 22px; height: 22px; accent-color: var(--gold-500); cursor: pointer; flex-shrink: 0;
   }
-  .action-item .action-text {
-    flex: 1;
-    font-size: 1rem;
-    color: var(--slate-300);
-  }
-  .action-item .action-due {
-    font-size: 0.82rem;
-    color: var(--slate-500);
-    white-space: nowrap;
-  }
-  .action-item .btn-delete {
-    background: none;
-    border: none;
-    color: var(--slate-500);
-    cursor: pointer;
-    font-size: 1.1rem;
-    padding: 6px;
-    border-radius: 8px;
-    transition: all 0.15s;
-    line-height: 1;
-    min-width: 36px;
-    min-height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .action-item .action-text { flex: 1; font-size: 1rem; color: var(--slate-300); }
+  .action-item .action-due { font-size: 0.82rem; color: var(--slate-500); white-space: nowrap; }
+  .action-item .btn-delete, .action-item .btn-telescope {
+    background: none; border: none; color: var(--slate-500); cursor: pointer;
+    font-size: 1.1rem; padding: 6px; border-radius: 8px; transition: all 0.15s;
+    line-height: 1; min-width: 36px; min-height: 36px;
+    display: flex; align-items: center; justify-content: center;
   }
   .action-item .btn-delete:hover { color: var(--error-light); background: rgba(239,68,68,0.1); }
+  .action-item .btn-telescope:hover { color: var(--gold-400); background: rgba(245,158,11,0.1); }
+  .action-item .btn-telescope.active { color: var(--gold-500); }
+  .action-item .btn-telescope svg { transition: transform 0.2s; }
+  .action-item .btn-telescope.active svg { transform: rotate(180deg); }
 
-  .empty-msg {
-    text-align: center;
-    color: var(--slate-500);
-    font-size: 0.9rem;
-    padding: 18px 0;
+  /* ── Sub-chart form (telescoped) ── */
+  .sub-chart-form {
+    margin-top: 12px; padding: 16px 18px;
+    border-left: 3px solid var(--gold-500);
+    background: rgba(245,158,11,0.03);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-left: 34px;
   }
+  .sub-chart-form .sub-chart-vision {
+    font-size: 0.82rem; color: var(--gold-400); font-weight: 700;
+    font-family: 'Montserrat', sans-serif; margin-bottom: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .sub-chart-form label {
+    display: block; font-size: 0.72rem; font-weight: 700; color: var(--slate-400);
+    margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px;
+  }
+  .sub-chart-form textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--navy-600);
+    border-radius: var(--radius-sm); font-size: 0.95rem;
+    font-family: 'Open Sans', system-ui, sans-serif; color: #fff;
+    background: var(--navy-900); resize: vertical; min-height: 60px; margin-bottom: 10px;
+  }
+  .sub-chart-form textarea:focus {
+    outline: none; border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  }
+  .sub-action-input-row {
+    display: flex; gap: 8px; align-items: flex-end; margin-bottom: 10px;
+  }
+  .sub-action-input-row input[type="text"] {
+    flex: 1; padding: 8px 10px; border: 1px solid var(--navy-600);
+    border-radius: var(--radius-sm); font-size: 0.9rem; color: #fff;
+    background: var(--navy-900); font-family: 'Open Sans', system-ui, sans-serif;
+  }
+  .sub-action-input-row input[type="date"] {
+    width: 130px; padding: 8px 10px; border: 1px solid var(--navy-600);
+    border-radius: var(--radius-sm); font-size: 0.85rem; color: #fff;
+    background: var(--navy-900); font-family: 'Open Sans', system-ui, sans-serif;
+  }
+  .sub-action-input-row input:focus {
+    outline: none; border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  }
+  .btn-add-sub {
+    padding: 8px 16px; background: var(--gold-500); color: var(--navy-900);
+    border: none; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; cursor: pointer; white-space: nowrap; min-height: 36px;
+  }
+  .btn-add-sub:hover { background: var(--gold-400); }
+  .sub-action-list { list-style: none; }
+  .sub-action-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; background: var(--navy-800); border: 1px solid var(--navy-700);
+    border-radius: 8px; margin-bottom: 6px; font-size: 0.9rem;
+  }
+  .sub-action-item.completed { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
+  .sub-action-item.completed .sub-action-text { text-decoration: line-through; color: var(--slate-500); }
+  .sub-action-item .sub-action-check { width: 18px; height: 18px; accent-color: var(--gold-500); cursor: pointer; }
+  .sub-action-item .sub-action-text { flex: 1; color: var(--slate-300); }
+  .sub-action-item .sub-action-due { font-size: 0.78rem; color: var(--slate-500); }
+  .sub-action-item .btn-delete-sub {
+    background: none; border: none; color: var(--slate-500); cursor: pointer;
+    font-size: 0.9rem; padding: 4px; border-radius: 6px; min-width: 28px; min-height: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sub-action-item .btn-delete-sub:hover { color: var(--error-light); background: rgba(239,68,68,0.1); }
+
+  .empty-msg { text-align: center; color: var(--slate-500); font-size: 0.9rem; padding: 18px 0; }
 
   /* ── Milestones ── */
-  .milestone-input-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
+  .milestone-input-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 18px; flex-wrap: wrap; }
   .milestone-input-row .field-text { flex: 1; min-width: 150px; }
   .milestone-input-row .field-date { width: 160px; }
   .milestone-list { list-style: none; }
   .milestone-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    background: var(--navy-800);
-    border: 1px solid var(--navy-700);
-    border-radius: var(--radius-sm);
-    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+    background: var(--navy-800); border: 1px solid var(--navy-700);
+    border-radius: var(--radius-sm); margin-bottom: 8px;
   }
   .milestone-item.completed { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
   .milestone-item.completed .milestone-text { text-decoration: line-through; color: var(--slate-500); }
-  .milestone-item .milestone-check {
-    width: 22px; height: 22px;
-    accent-color: var(--gold-500);
-    cursor: pointer; flex-shrink: 0;
-  }
+  .milestone-item .milestone-check { width: 22px; height: 22px; accent-color: var(--gold-500); cursor: pointer; flex-shrink: 0; }
   .milestone-item .milestone-text { flex: 1; font-size: 1rem; color: var(--slate-300); }
   .milestone-item .milestone-due { font-size: 0.82rem; color: var(--slate-500); white-space: nowrap; }
   .milestone-item .btn-delete {
@@ -356,325 +268,197 @@
 
   .chart-vision-box {
     background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(251,191,36,0.06));
-    border: 2px solid rgba(245,158,11,0.4);
-    border-radius: var(--radius-lg);
-    padding: 24px 28px;
-    text-align: center;
-    margin-bottom: 8px;
+    border: 2px solid rgba(245,158,11,0.4); border-radius: var(--radius-lg);
+    padding: 24px 28px; text-align: center; margin-bottom: 8px;
     box-shadow: 0 0 20px rgba(245,158,11,0.08);
   }
   .chart-vision-box .chart-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-500);
-    margin-bottom: 10px;
+    font-size: 0.7rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold-500); margin-bottom: 10px;
   }
   .chart-vision-box .chart-value {
-    font-size: 1.05rem;
-    color: var(--slate-300);
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.6;
+    font-size: 1.05rem; color: var(--slate-300); white-space: pre-wrap; word-break: break-word; line-height: 1.6;
   }
 
-  /* Tension connector */
-  .tension-connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 6px 0;
-    position: relative;
-  }
-  .tension-line {
-    width: 2px;
-    height: 18px;
-    background: linear-gradient(to bottom, var(--gold-500), var(--navy-700));
-  }
+  .tension-connector { display: flex; flex-direction: column; align-items: center; padding: 6px 0; position: relative; }
+  .tension-line { width: 2px; height: 18px; background: linear-gradient(to bottom, var(--gold-500), var(--navy-700)); }
   .tension-badge {
-    display: inline-block;
-    padding: 5px 16px;
-    border: 1px solid rgba(245,158,11,0.3);
-    border-radius: var(--radius-full);
-    font-size: 0.62rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-400);
-    background: var(--navy-800);
-    box-shadow: 0 0 12px rgba(245,158,11,0.1);
+    display: inline-block; padding: 5px 16px;
+    border: 1px solid rgba(245,158,11,0.3); border-radius: var(--radius-full);
+    font-size: 0.62rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold-400);
+    background: var(--navy-800); box-shadow: 0 0 12px rgba(245,158,11,0.1);
   }
 
-  /* Chart action steps */
+  /* Chart steps */
   .chart-steps { margin: 8px 0; }
   .chart-step-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 18px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-md);
-    margin-bottom: 8px;
-    box-shadow: var(--shadow-soft);
-    transition: all 0.2s;
-    cursor: pointer;
-    min-height: 48px;
+    display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+    background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius-md);
+    margin-bottom: 8px; box-shadow: var(--shadow-soft);
+    transition: all 0.2s; cursor: pointer; min-height: 48px;
   }
-  .chart-step-item:hover {
-    border-color: rgba(245,158,11,0.3);
-    background: var(--glass-bg-hover);
-  }
-  .chart-step-item.completed {
-    background: rgba(34,197,94,0.06);
-    border-color: rgba(34,197,94,0.25);
-  }
+  .chart-step-item:hover { border-color: rgba(245,158,11,0.3); background: var(--glass-bg-hover); }
+  .chart-step-item.completed { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.25); }
   .chart-step-item.completed .chart-step-text { text-decoration: line-through; color: var(--slate-500); }
   .chart-step-circle {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 2px solid var(--navy-600);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s;
+    width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--navy-600);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s;
   }
-  .chart-step-item.completed .chart-step-circle {
-    border-color: var(--success);
-    background: var(--success);
-  }
+  .chart-step-item.completed .chart-step-circle { border-color: var(--success); background: var(--success); }
   .chart-step-circle .check-icon { display: none; }
   .chart-step-item.completed .chart-step-circle .check-icon { display: block; }
   .chart-step-text { flex: 1; font-size: 1rem; color: var(--slate-300); }
-  .chart-step-num {
-    font-size: 0.8rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--slate-500);
-    min-width: 20px;
-    text-align: right;
+  .chart-step-num { font-size: 0.8rem; font-weight: 700; font-family: 'Montserrat', sans-serif; color: var(--slate-500); min-width: 20px; text-align: right; }
+  .chart-step-due { font-size: 0.78rem; color: var(--slate-500); white-space: nowrap; }
+
+  /* Chart sub-chart (telescoped) */
+  .chart-sub-chart {
+    margin: 4px 0 8px 42px; padding: 14px 16px;
+    border-left: 3px solid var(--gold-500);
+    background: rgba(245,158,11,0.04);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
-  .chart-step-due {
-    font-size: 0.78rem;
-    color: var(--slate-500);
-    white-space: nowrap;
+  .chart-sub-chart .sub-label {
+    font-size: 0.6rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;
   }
+  .chart-sub-chart .sub-label-vision { color: var(--gold-500); }
+  .chart-sub-chart .sub-label-reality { color: var(--slate-500); }
+  .chart-sub-chart .sub-text-vision { font-size: 0.9rem; color: var(--gold-300); margin-bottom: 8px; }
+  .chart-sub-chart .sub-text-reality { font-size: 0.9rem; color: var(--slate-400); margin-bottom: 10px; }
+  .chart-sub-step-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; background: var(--glass-bg);
+    border: 1px solid var(--glass-border); border-radius: 10px;
+    margin-bottom: 5px; font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
+  }
+  .chart-sub-step-item:hover { border-color: rgba(245,158,11,0.3); }
+  .chart-sub-step-item.completed { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.25); }
+  .chart-sub-step-item.completed .chart-sub-step-text { text-decoration: line-through; color: var(--slate-500); }
+  .chart-sub-step-circle {
+    width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--navy-600);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .chart-sub-step-item.completed .chart-sub-step-circle { border-color: var(--success); background: var(--success); }
+  .chart-sub-step-circle .check-icon { display: none; }
+  .chart-sub-step-item.completed .chart-sub-step-circle .check-icon { display: block; }
+  .chart-sub-step-text { flex: 1; color: var(--slate-300); }
+  .chart-sub-step-due { font-size: 0.72rem; color: var(--slate-500); }
 
   /* Chart milestones */
   .chart-milestones-section { margin: 14px 0 8px; }
   .chart-milestones-label {
-    font-size: 0.62rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--slate-500);
-    text-align: center;
-    margin-bottom: 10px;
+    font-size: 0.62rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--slate-500);
+    text-align: center; margin-bottom: 10px;
   }
   .chart-milestone-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: transparent;
-    border: 1px dashed var(--navy-700);
-    border-radius: var(--radius-sm);
-    margin-bottom: 6px;
-    font-size: 0.95rem;
-    color: var(--slate-400);
-    cursor: pointer;
-    transition: all 0.2s;
-    min-height: 48px;
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+    background: transparent; border: 1px dashed var(--navy-700);
+    border-radius: var(--radius-sm); margin-bottom: 6px; font-size: 0.95rem;
+    color: var(--slate-400); cursor: pointer; transition: all 0.2s; min-height: 48px;
   }
   .chart-milestone-item:hover { border-color: var(--gold-500); }
-  .chart-milestone-item.completed {
-    background: rgba(34,197,94,0.06);
-    border-color: rgba(34,197,94,0.25);
-    border-style: solid;
-  }
+  .chart-milestone-item.completed { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.25); border-style: solid; }
   .chart-milestone-item.completed .chart-milestone-text { text-decoration: line-through; color: var(--slate-500); }
-  .chart-milestone-diamond {
-    width: 10px; height: 10px;
-    background: var(--gold-500);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-    transition: background 0.2s;
-    opacity: 0.5;
-  }
+  .chart-milestone-diamond { width: 10px; height: 10px; background: var(--gold-500); transform: rotate(45deg); flex-shrink: 0; transition: background 0.2s; opacity: 0.5; }
   .chart-milestone-item.completed .chart-milestone-diamond { background: var(--success); opacity: 1; }
   .chart-milestone-text { flex: 1; }
   .chart-milestone-due { font-size: 0.78rem; color: var(--slate-500); }
 
   .chart-reality-box {
-    background: var(--navy-800);
-    border: 2px solid var(--navy-700);
-    border-radius: var(--radius-lg);
-    padding: 24px 28px;
-    text-align: center;
-    margin-top: 8px;
+    background: var(--navy-800); border: 2px solid var(--navy-700);
+    border-radius: var(--radius-lg); padding: 24px 28px; text-align: center; margin-top: 8px;
   }
   .chart-reality-box .chart-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--slate-500);
-    margin-bottom: 10px;
+    font-size: 0.7rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--slate-500); margin-bottom: 10px;
   }
   .chart-reality-box .chart-value {
-    font-size: 1.05rem;
-    color: var(--slate-400);
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.6;
+    font-size: 1.05rem; color: var(--slate-400); white-space: pre-wrap; word-break: break-word; line-height: 1.6;
   }
 
-  /* Chart header info */
-  .chart-header-info {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+  .chart-header-info { text-align: center; margin-bottom: 20px; }
   .chart-header-info .chart-title {
-    font-size: 1.3rem;
-    font-weight: 800;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem; font-weight: 800; font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
-  .chart-header-info .chart-meta {
-    font-size: 0.85rem;
-    color: var(--slate-500);
-    margin-top: 4px;
-  }
+  .chart-header-info .chart-meta { font-size: 0.85rem; color: var(--slate-500); margin-top: 4px; }
+  .chart-empty-placeholder { text-align: center; color: var(--slate-500); font-size: 0.9rem; padding: 10px 0; font-style: italic; }
 
-  .chart-empty-placeholder {
-    text-align: center;
-    color: var(--slate-500);
-    font-size: 0.9rem;
-    padding: 10px 0;
-    font-style: italic;
-  }
-
-  /* ── PDF-only styles (light theme for print) ── */
+  /* ── PDF styles (compact for 1-page default) ── */
   #pdf-output {
-    display: none;
-    font-family: 'Open Sans', 'Inter', system-ui, sans-serif;
-    background: #fff;
-    color: #1E293B;
-    padding: 40px;
-    max-width: 800px;
+    display: none; font-family: 'Open Sans', 'Inter', system-ui, sans-serif;
+    background: #fff; color: #1E293B; padding: 20px 28px; max-width: 800px;
   }
   #pdf-output .pdf-header {
-    text-align: center;
-    border-bottom: 3px solid var(--gold-500);
-    padding-bottom: 18px;
-    margin-bottom: 28px;
+    text-align: center; border-bottom: 3px solid var(--gold-500);
+    padding-bottom: 10px; margin-bottom: 14px;
   }
-  #pdf-output .pdf-header h1 {
-    font-size: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    color: var(--navy-900);
-  }
-  #pdf-output .pdf-header .pdf-meta {
-    font-size: 0.9rem;
-    color: var(--slate-500);
-    margin-top: 6px;
-  }
+  #pdf-output .pdf-header h1 { font-size: 1.3rem; font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--navy-900); }
+  #pdf-output .pdf-header .pdf-meta { font-size: 0.82rem; color: var(--slate-500); margin-top: 4px; }
 
-  #pdf-output .pdf-section {
-    margin-bottom: 22px;
-    page-break-inside: avoid;
-  }
+  #pdf-output .pdf-section { margin-bottom: 12px; page-break-inside: avoid; }
   #pdf-output .pdf-section-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-600);
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #E5E7EB;
+    font-size: 0.68rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold-600);
+    margin-bottom: 5px; padding-bottom: 3px; border-bottom: 1px solid #E5E7EB;
   }
   #pdf-output .pdf-box {
-    padding: 16px 20px;
-    border-radius: 12px;
-    font-size: 1rem;
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.6;
+    padding: 10px 14px; border-radius: 12px; font-size: 0.88rem;
+    white-space: pre-wrap; word-break: break-word; line-height: 1.45;
   }
-  #pdf-output .pdf-vision-box {
-    background: #FFFBEB;
-    border: 1px solid var(--gold-300);
-  }
-  #pdf-output .pdf-reality-box {
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
-  }
+  #pdf-output .pdf-vision-box { background: #FFFBEB; border: 1px solid var(--gold-300); }
+  #pdf-output .pdf-reality-box { background: #F8FAFC; border: 1px solid #E2E8F0; }
 
-  #pdf-output .pdf-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-  }
+  #pdf-output .pdf-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
   #pdf-output .pdf-table th {
-    text-align: left;
-    padding: 10px 12px;
-    background: #F8FAFC;
-    border-bottom: 2px solid #CBD5E1;
-    font-size: 0.72rem;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--slate-500);
+    text-align: left; padding: 6px 10px; background: #F8FAFC;
+    border-bottom: 2px solid #CBD5E1; font-size: 0.65rem;
+    font-family: 'Montserrat', sans-serif; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--slate-500);
   }
-  #pdf-output .pdf-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #E5E7EB;
-    vertical-align: top;
-  }
-  #pdf-output .pdf-table .status-cell { text-align: center; font-size: 1.2rem; }
+  #pdf-output .pdf-table td { padding: 6px 10px; border-bottom: 1px solid #E5E7EB; vertical-align: top; }
+  #pdf-output .pdf-table .status-cell { text-align: center; font-size: 1.1rem; }
   #pdf-output .pdf-table tr.completed-row td { color: var(--slate-400); }
   #pdf-output .pdf-table tr.completed-row .action-col { text-decoration: line-through; }
 
+  #pdf-output .pdf-sub-chart {
+    padding: 6px 12px; border-left: 3px solid var(--gold-500);
+    background: #FFFBEB; border-radius: 0 8px 8px 0; font-size: 0.8rem; margin: 2px 0 4px 24px;
+  }
+  #pdf-output .pdf-sub-chart .pdf-sub-label {
+    font-size: 0.58rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--gold-600); margin-bottom: 1px;
+  }
+  #pdf-output .pdf-sub-chart .pdf-sub-text { margin-bottom: 4px; line-height: 1.4; }
+  #pdf-output .pdf-sub-actions-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin-top: 3px; }
+  #pdf-output .pdf-sub-actions-table td { padding: 2px 6px; border-bottom: 1px solid #E5E7EB; }
+  #pdf-output .pdf-sub-actions-table .status-cell { text-align: center; font-size: 0.95rem; }
+
   #pdf-output .pdf-milestone-list { list-style: none; padding: 0; }
   #pdf-output .pdf-milestone-list li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid #F1F5F9;
-    font-size: 0.95rem;
+    display: flex; align-items: center; gap: 12px;
+    padding: 5px 0; border-bottom: 1px solid #F1F5F9; font-size: 0.85rem;
   }
-  #pdf-output .pdf-milestone-list .ms-status { font-size: 1.2rem; }
+  #pdf-output .pdf-milestone-list .ms-status { font-size: 1.1rem; }
 
   /* ── Responsive ── */
   @media (max-width: 860px) {
     .app-layout { grid-template-columns: 1fr; }
-    .chart-panel {
-      border-left: none;
-      border-top: 1px solid var(--glass-border);
-      max-height: none;
-    }
+    .chart-panel { border-left: none; border-top: 1px solid var(--glass-border); max-height: none; }
     .form-panel { max-height: none; }
     .app-header { padding: 14px 20px; }
     .form-panel, .chart-panel { padding: 20px; }
+    .action-item-main { flex-wrap: wrap; gap: 8px; }
+    .action-item .action-text { min-width: 120px; }
+    .sub-chart-form { padding: 12px; }
+    .sub-action-input-row { flex-wrap: wrap; }
   }
 
-  /* ── Print ── */
   @media print {
     body { background: #fff; color: #1E293B; }
     body::before { display: none; }
@@ -683,30 +467,20 @@
     .chart-panel { border: none; background: #fff; padding: 20px; max-height: none; }
   }
 
-  /* ── Subtle glow animation for the vision box ── */
   @keyframes glowPulse {
     0%, 100% { box-shadow: 0 0 20px rgba(245,158,11,0.08); }
     50% { box-shadow: 0 0 30px rgba(245,158,11,0.14); }
   }
   .chart-vision-box { animation: glowPulse 3s ease-in-out infinite; }
 
-  /* ── Scrollbar styling ── */
-  .form-panel::-webkit-scrollbar,
-  .chart-panel::-webkit-scrollbar { width: 6px; }
-  .form-panel::-webkit-scrollbar-track,
-  .chart-panel::-webkit-scrollbar-track { background: transparent; }
-  .form-panel::-webkit-scrollbar-thumb,
-  .chart-panel::-webkit-scrollbar-thumb {
-    background: var(--navy-700);
-    border-radius: 3px;
-  }
-  .form-panel::-webkit-scrollbar-thumb:hover,
-  .chart-panel::-webkit-scrollbar-thumb:hover { background: var(--navy-600); }
+  .form-panel::-webkit-scrollbar, .chart-panel::-webkit-scrollbar { width: 6px; }
+  .form-panel::-webkit-scrollbar-track, .chart-panel::-webkit-scrollbar-track { background: transparent; }
+  .form-panel::-webkit-scrollbar-thumb, .chart-panel::-webkit-scrollbar-thumb { background: var(--navy-700); border-radius: 3px; }
+  .form-panel::-webkit-scrollbar-thumb:hover, .chart-panel::-webkit-scrollbar-thumb:hover { background: var(--navy-600); }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="app-header">
   <div>
     <h1>Structural Tension Chart</h1>
@@ -718,13 +492,9 @@
   </button>
 </header>
 
-<!-- Main layout -->
 <div class="app-layout">
-
-  <!-- ─── FORM PANEL ─── -->
   <div class="form-panel">
 
-    <!-- Meta info -->
     <div class="form-card">
       <h2><span class="step-num">0.</span> Your Information</h2>
       <div class="meta-row">
@@ -741,7 +511,6 @@
       <input type="text" id="goalTitle" placeholder="e.g. Achieve Optimal Health by December">
     </div>
 
-    <!-- Vision -->
     <div class="form-card">
       <h2><span class="step-num">1.</span> Define the Goal</h2>
       <label for="visionText">Vision / Desired Future</label>
@@ -756,32 +525,29 @@
       </div>
     </div>
 
-    <!-- Current Reality -->
     <div class="form-card">
       <h2><span class="step-num">2.</span> Acknowledge Reality</h2>
       <label for="realityText">Current Reality</label>
       <textarea id="realityText" placeholder="Honestly describe where you are right now..."></textarea>
     </div>
 
-    <!-- Action Plan -->
     <div class="form-card">
-      <h2><span class="step-num">3.</span> Action Plan</h2>
-      <p style="font-size:0.9rem;color:var(--slate-500);margin-bottom:16px">What steps will resolve the tension between reality and your vision?</p>
+      <h2><span class="step-num">3.</span> Secondary Actions</h2>
+      <p style="font-size:0.9rem;color:var(--slate-500);margin-bottom:16px">What secondary actions will move you from current reality toward your vision?</p>
       <div class="action-input-row">
         <div class="field-text">
-          <input type="text" id="actionInput" placeholder="Add an action step...">
+          <input type="text" id="actionInput" placeholder="Add a secondary action...">
         </div>
         <div class="field-date">
           <label for="actionDue" style="margin-bottom:4px">Due:</label>
           <input type="date" id="actionDue">
         </div>
-        <button class="btn-add" id="btnAddAction">Add Step</button>
+        <button class="btn-add" id="btnAddAction">Add Action</button>
       </div>
       <ul class="action-list" id="actionList"></ul>
-      <p class="empty-msg" id="actionEmpty">No action steps yet. Add your first step above.</p>
+      <p class="empty-msg" id="actionEmpty">No secondary actions yet. Add your first action above.</p>
     </div>
 
-    <!-- Milestones -->
     <div class="form-card">
       <h2><span class="step-num">4.</span> Key Milestones</h2>
       <p style="font-size:0.9rem;color:var(--slate-500);margin-bottom:16px">Mark the major checkpoints on your path to the goal.</p>
@@ -800,45 +566,31 @@
     </div>
   </div>
 
-  <!-- ─── CHART PANEL (live preview) ─── -->
   <div class="chart-panel">
     <div class="chart-preview" id="chartPreview">
-
       <div class="chart-header-info" id="chartHeaderInfo" style="display:none">
         <div class="chart-title" id="chartTitle"></div>
         <div class="chart-meta" id="chartMeta"></div>
       </div>
-
-      <!-- Vision Box -->
       <div class="chart-vision-box">
         <div class="chart-label">Vision / Desired Future</div>
         <div class="chart-value" id="chartVision">
           <span class="chart-empty-placeholder">Your vision will appear here...</span>
         </div>
       </div>
-
-      <!-- Connector -->
       <div class="tension-connector">
         <div class="tension-line"></div>
         <div class="tension-badge">Structural Tension</div>
         <div class="tension-line"></div>
       </div>
-
-      <!-- Action Steps in chart -->
       <div class="chart-steps" id="chartSteps"></div>
-
-      <!-- Milestones in chart -->
       <div class="chart-milestones-section" id="chartMilestonesSection" style="display:none">
         <div class="chart-milestones-label">Milestones</div>
         <div id="chartMilestones"></div>
       </div>
-
-      <!-- Connector -->
       <div class="tension-connector">
         <div class="tension-line"></div>
       </div>
-
-      <!-- Reality Box -->
       <div class="chart-reality-box">
         <div class="chart-label">Current Reality</div>
         <div class="chart-value" id="chartReality">
@@ -849,38 +601,32 @@
   </div>
 </div>
 
-<!-- ─── PDF OUTPUT (hidden, used for generation) ─── -->
 <div id="pdf-output">
   <div class="pdf-header">
     <h1 id="pdfTitle">Structural Tension Chart</h1>
     <div class="pdf-meta" id="pdfMeta"></div>
   </div>
-
   <div class="pdf-section" id="pdfMotivationSection" style="display:none">
     <div class="pdf-section-title">Why This Matters</div>
     <div class="pdf-box pdf-vision-box" id="pdfMotivation" style="background:#FFFBEB;border-color:#FCD34D"></div>
   </div>
-
   <div class="pdf-section">
     <div class="pdf-section-title">Vision / Desired Future</div>
     <div class="pdf-box pdf-vision-box" id="pdfVision"></div>
   </div>
-
   <div class="pdf-section">
     <div class="pdf-section-title">Current Reality</div>
     <div class="pdf-box pdf-reality-box" id="pdfReality"></div>
   </div>
-
   <div class="pdf-section" id="pdfActionsSection">
-    <div class="pdf-section-title">Action Steps</div>
+    <div class="pdf-section-title">Secondary Actions</div>
     <table class="pdf-table">
       <thead>
-        <tr><th style="width:36px"></th><th>#</th><th>Action</th><th>Due Date</th></tr>
+        <tr><th style="width:36px"></th><th>#</th><th>Secondary Action</th><th>Due Date</th></tr>
       </thead>
       <tbody id="pdfActionsBody"></tbody>
     </table>
   </div>
-
   <div class="pdf-section" id="pdfMilestonesSection" style="display:none">
     <div class="pdf-section-title">Key Milestones</div>
     <ul class="pdf-milestone-list" id="pdfMilestonesList"></ul>
@@ -891,13 +637,11 @@
 (function() {
   'use strict';
 
-  // ── State ──
   let actions = [];
   let milestones = [];
   let nextActionId = 1;
   let nextMilestoneId = 1;
 
-  // ── DOM refs ──
   const $ = id => document.getElementById(id);
 
   const userName = $('userName');
@@ -915,8 +659,6 @@
   const milestoneDue = $('milestoneDue');
   const milestoneList = $('milestoneList');
   const milestoneEmpty = $('milestoneEmpty');
-
-  // Chart preview refs
   const chartHeaderInfo = $('chartHeaderInfo');
   const chartTitleEl = $('chartTitle');
   const chartMetaEl = $('chartMeta');
@@ -926,12 +668,11 @@
   const chartMilestonesSection = $('chartMilestonesSection');
   const chartMilestones = $('chartMilestones');
 
-  // ── Init ──
   chartDate.valueAsDate = new Date();
   actionDue.valueAsDate = new Date();
   milestoneDue.valueAsDate = new Date();
 
-  // ── Live preview updates ──
+  // ── Live preview ──
   function updateChartPreview() {
     const name = userName.value.trim();
     const date = chartDate.value;
@@ -951,14 +692,10 @@
     }
 
     const v = visionText.value.trim();
-    chartVision.innerHTML = v
-      ? escapeHtml(v)
-      : '<span class="chart-empty-placeholder">Your vision will appear here...</span>';
+    chartVision.innerHTML = v ? escapeHtml(v) : '<span class="chart-empty-placeholder">Your vision will appear here...</span>';
 
     const r = realityText.value.trim();
-    chartReality.innerHTML = r
-      ? escapeHtml(r)
-      : '<span class="chart-empty-placeholder">Your current reality will appear here...</span>';
+    chartReality.innerHTML = r ? escapeHtml(r) : '<span class="chart-empty-placeholder">Your current reality will appear here...</span>';
 
     renderChartSteps();
     renderChartMilestones();
@@ -983,14 +720,46 @@
       `;
       div.addEventListener('click', () => toggleAction(a.id));
       chartSteps.appendChild(div);
+
+      // Telescoped sub-chart
+      if (a.telescoped && (a.subReality || a.subActions.length > 0)) {
+        const sub = document.createElement('div');
+        sub.className = 'chart-sub-chart';
+        let subHtml = `
+          <div class="sub-label sub-label-vision">Vision</div>
+          <div class="sub-text-vision">${escapeHtml(a.text)}</div>
+        `;
+        if (a.subReality) {
+          subHtml += `
+            <div class="sub-label sub-label-reality">Current Reality</div>
+            <div class="sub-text-reality">${escapeHtml(a.subReality)}</div>
+          `;
+        }
+        a.subActions.forEach(s => {
+          subHtml += `
+            <div class="chart-sub-step-item${s.done ? ' completed' : ''}" data-aid="${a.id}" data-sid="${s.id}">
+              <div class="chart-sub-step-circle">
+                <svg class="check-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="chart-sub-step-text">${escapeHtml(s.text)}</span>
+              ${s.due ? '<span class="chart-sub-step-due">' + formatDate(s.due) + '</span>' : ''}
+            </div>
+          `;
+        });
+        sub.innerHTML = subHtml;
+        sub.querySelectorAll('.chart-sub-step-item').forEach(el => {
+          el.addEventListener('click', e => {
+            e.stopPropagation();
+            toggleSubAction(parseInt(el.dataset.aid), parseInt(el.dataset.sid));
+          });
+        });
+        chartSteps.appendChild(sub);
+      }
     }
   }
 
   function renderChartMilestones() {
-    if (milestones.length === 0) {
-      chartMilestonesSection.style.display = 'none';
-      return;
-    }
+    if (milestones.length === 0) { chartMilestonesSection.style.display = 'none'; return; }
     chartMilestonesSection.style.display = '';
     chartMilestones.innerHTML = '';
     milestones.forEach(m => {
@@ -1006,12 +775,15 @@
     });
   }
 
-  // ── Action steps ──
+  // ── Actions ──
   function addAction() {
     const text = actionInput.value.trim();
     if (!text) { actionInput.focus(); return; }
     const due = actionDue.value;
-    actions.push({ id: nextActionId++, text, due, done: false });
+    actions.push({
+      id: nextActionId++, text, due, done: false,
+      telescoped: false, subReality: '', subActions: [], nextSubActionId: 1
+    });
     actionInput.value = '';
     renderActions();
     updateChartPreview();
@@ -1031,23 +803,127 @@
     updateChartPreview();
   }
 
+  function toggleTelescope(id) {
+    const a = actions.find(a => a.id === id);
+    if (a) a.telescoped = !a.telescoped;
+    renderActions();
+    updateChartPreview();
+  }
+
+  function updateSubReality(actionId, value) {
+    const a = actions.find(a => a.id === actionId);
+    if (a) a.subReality = value;
+    updateChartPreview();
+  }
+
+  function addSubAction(actionId, text, due) {
+    const a = actions.find(a => a.id === actionId);
+    if (!a || !text.trim()) return;
+    a.subActions.push({ id: a.nextSubActionId++, text: text.trim(), due, done: false });
+    renderActions();
+    updateChartPreview();
+  }
+
+  function removeSubAction(actionId, subId) {
+    const a = actions.find(a => a.id === actionId);
+    if (a) a.subActions = a.subActions.filter(s => s.id !== subId);
+    renderActions();
+    updateChartPreview();
+  }
+
+  function toggleSubAction(actionId, subId) {
+    const a = actions.find(a => a.id === actionId);
+    if (a) {
+      const s = a.subActions.find(s => s.id === subId);
+      if (s) s.done = !s.done;
+    }
+    renderActions();
+    updateChartPreview();
+  }
+
   function renderActions() {
+    // Capture current sub-reality values before clearing DOM
+    const subRealityValues = {};
+    actions.forEach(a => {
+      const ta = actionList.querySelector(`.sub-reality-input[data-id="${a.id}"]`);
+      if (ta) subRealityValues[a.id] = ta.value;
+    });
+
     actionList.innerHTML = '';
     actionEmpty.style.display = actions.length === 0 ? '' : 'none';
     actions.forEach(a => {
+      // Restore sub-reality from captured DOM if it changed
+      if (subRealityValues[a.id] !== undefined) a.subReality = subRealityValues[a.id];
+
       const li = document.createElement('li');
       li.className = 'action-item' + (a.done ? ' completed' : '');
-      li.innerHTML = `
+
+      let html = `<div class="action-item-main">
         <span class="drag-handle">\u2807</span>
         <input type="checkbox" class="action-check" ${a.done ? 'checked' : ''}>
         <span class="action-text">${escapeHtml(a.text)}</span>
         ${a.due ? '<span class="action-due">' + formatDate(a.due) + '</span>' : ''}
+        <button class="btn-telescope${a.telescoped ? ' active' : ''}" title="Telescope into sub-chart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </button>
         <button class="btn-delete" title="Remove">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
         </button>
-      `;
+      </div>`;
+
+      if (a.telescoped) {
+        html += `<div class="sub-chart-form">
+          <div class="sub-chart-vision">Vision: ${escapeHtml(a.text)}</div>
+          <label>Current Reality for this action</label>
+          <textarea class="sub-reality-input" data-id="${a.id}" placeholder="Where are you now on this specific action?">${escapeHtml(a.subReality)}</textarea>
+          <div class="sub-action-input-row">
+            <input type="text" class="sub-action-text-input" placeholder="Add a sub-action...">
+            <input type="date" class="sub-action-date-input" value="${new Date().toISOString().split('T')[0]}">
+            <button class="btn-add-sub">Add</button>
+          </div>
+          <ul class="sub-action-list">${a.subActions.map(s => `
+            <li class="sub-action-item${s.done ? ' completed' : ''}" data-aid="${a.id}" data-sid="${s.id}">
+              <input type="checkbox" class="sub-action-check" ${s.done ? 'checked' : ''}>
+              <span class="sub-action-text">${escapeHtml(s.text)}</span>
+              ${s.due ? '<span class="sub-action-due">' + formatDate(s.due) + '</span>' : ''}
+              <button class="btn-delete-sub" title="Remove">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+              </button>
+            </li>
+          `).join('')}</ul>
+        </div>`;
+      }
+
+      li.innerHTML = html;
+
+      // Wire events
       li.querySelector('.action-check').addEventListener('change', () => toggleAction(a.id));
+      li.querySelector('.btn-telescope').addEventListener('click', () => toggleTelescope(a.id));
       li.querySelector('.btn-delete').addEventListener('click', () => removeAction(a.id));
+
+      if (a.telescoped) {
+        const subRealityTa = li.querySelector('.sub-reality-input');
+        subRealityTa.addEventListener('input', e => updateSubReality(a.id, e.target.value));
+
+        const addSubBtn = li.querySelector('.btn-add-sub');
+        const subTextInput = li.querySelector('.sub-action-text-input');
+        const subDateInput = li.querySelector('.sub-action-date-input');
+        const doAddSub = () => {
+          addSubAction(a.id, subTextInput.value, subDateInput.value);
+        };
+        addSubBtn.addEventListener('click', doAddSub);
+        subTextInput.addEventListener('keydown', e => { if (e.key === 'Enter') doAddSub(); });
+
+        li.querySelectorAll('.sub-action-check').forEach(chk => {
+          const item = chk.closest('.sub-action-item');
+          chk.addEventListener('change', () => toggleSubAction(parseInt(item.dataset.aid), parseInt(item.dataset.sid)));
+        });
+        li.querySelectorAll('.btn-delete-sub').forEach(btn => {
+          const item = btn.closest('.sub-action-item');
+          btn.addEventListener('click', () => removeSubAction(parseInt(item.dataset.aid), parseInt(item.dataset.sid)));
+        });
+      }
+
       actionList.appendChild(li);
     });
   }
@@ -1056,8 +932,7 @@
   function addMilestone() {
     const text = milestoneInput.value.trim();
     if (!text) { milestoneInput.focus(); return; }
-    const due = milestoneDue.value;
-    milestones.push({ id: nextMilestoneId++, text, due, done: false });
+    milestones.push({ id: nextMilestoneId++, text, due: milestoneDue.value, done: false });
     milestoneInput.value = '';
     renderMilestones();
     updateChartPreview();
@@ -1112,12 +987,8 @@
     $('pdfMeta').textContent = meta.join('  \u00B7  ');
 
     const why = whyMatters.value.trim();
-    if (why) {
-      $('pdfMotivationSection').style.display = '';
-      $('pdfMotivation').textContent = why;
-    } else {
-      $('pdfMotivationSection').style.display = 'none';
-    }
+    if (why) { $('pdfMotivationSection').style.display = ''; $('pdfMotivation').textContent = why; }
+    else { $('pdfMotivationSection').style.display = 'none'; }
 
     $('pdfVision').textContent = visionText.value.trim() || '(Not specified)';
     $('pdfReality').textContent = realityText.value.trim() || '(Not specified)';
@@ -1138,6 +1009,32 @@
           <td>${a.due ? formatDate(a.due) : '\u2014'}</td>
         `;
         tbody.appendChild(tr);
+
+        // Telescoped sub-chart in PDF
+        if (a.telescoped && (a.subReality || a.subActions.length > 0)) {
+          const subTr = document.createElement('tr');
+          let subHtml = '<td colspan="4"><div class="pdf-sub-chart">';
+          subHtml += '<div class="pdf-sub-label">Sub-Vision</div>';
+          subHtml += '<div class="pdf-sub-text">' + escapeHtml(a.text) + '</div>';
+          if (a.subReality) {
+            subHtml += '<div class="pdf-sub-label">Current Reality</div>';
+            subHtml += '<div class="pdf-sub-text">' + escapeHtml(a.subReality) + '</div>';
+          }
+          if (a.subActions.length > 0) {
+            subHtml += '<table class="pdf-sub-actions-table">';
+            a.subActions.forEach(s => {
+              subHtml += `<tr${s.done ? ' style="color:#94A3B8"' : ''}>
+                <td class="status-cell">${s.done ? '&#9745;' : '&#9744;'}</td>
+                <td${s.done ? ' style="text-decoration:line-through"' : ''}>${escapeHtml(s.text)}</td>
+                <td>${s.due ? formatDate(s.due) : '\u2014'}</td>
+              </tr>`;
+            });
+            subHtml += '</table>';
+          }
+          subHtml += '</div></td>';
+          subTr.innerHTML = subHtml;
+          tbody.appendChild(subTr);
+        }
       });
     }
 
@@ -1152,14 +1049,14 @@
         li.innerHTML = `
           <span class="ms-status">${m.done ? '&#9745;' : '&#9744;'}</span>
           <span>${escapeHtml(m.text)}</span>
-          ${m.due ? '<span style="margin-left:auto;font-size:0.85rem;color:#94A3B8">' + formatDate(m.due) + '</span>' : ''}
+          ${m.due ? '<span style="margin-left:auto;font-size:0.82rem;color:#94A3B8">' + formatDate(m.due) + '</span>' : ''}
         `;
         msList.appendChild(li);
       });
     }
 
     const opt = {
-      margin: [0.4, 0.5, 0.4, 0.5],
+      margin: [0.25, 0.35, 0.25, 0.35],
       filename: (title.replace(/[^a-zA-Z0-9]/g, '_') || 'structural_tension_chart') + '.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true },
@@ -1167,9 +1064,7 @@
       pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
-    html2pdf().set(opt).from(pdfEl).save().then(() => {
-      pdfEl.style.display = 'none';
-    });
+    html2pdf().set(opt).from(pdfEl).save().then(() => { pdfEl.style.display = 'none'; });
   }
 
   // ── Helpers ──
@@ -1188,10 +1083,8 @@
   // ── Event Listeners ──
   $('btnAddAction').addEventListener('click', addAction);
   actionInput.addEventListener('keydown', e => { if (e.key === 'Enter') addAction(); });
-
   $('btnAddMilestone').addEventListener('click', addMilestone);
   milestoneInput.addEventListener('keydown', e => { if (e.key === 'Enter') addMilestone(); });
-
   $('btnPrint').addEventListener('click', generatePDF);
 
   [userName, chartDate, goalTitle, visionText, targetDate, whyMatters, realityText].forEach(el => {
