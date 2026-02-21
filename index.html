@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structural Tension Chart — 28-Day Metabolic Reset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* ── Midnight Gold Elite Palette ── */
+    --navy-950: #020617;
+    --navy-900: #0F172A;
+    --navy-800: #1E293B;
+    --navy-700: #334155;
+    --navy-600: #475569;
+    --gold-600: #D97706;
+    --gold-500: #F59E0B;
+    --gold-400: #FBBF24;
+    --gold-300: #FCD34D;
+    --slate-300: #CBD5E1;
+    --slate-400: #94A3B8;
+    --slate-500: #64748B;
+    --success: #22C55E;
+    --success-light: #4ADE80;
+    --error: #EF4444;
+    --error-light: #F87171;
+    --info: #3B82F6;
+
+    /* ── Effects ── */
+    --shadow-soft: 0 4px 20px -2px rgba(15, 23, 42, 0.5);
+    --shadow-glow: 0 0 15px rgba(245, 158, 11, 0.3);
+    --shadow-glow-lg: 0 0 30px rgba(245, 158, 11, 0.4);
+    --shadow-gold: 0 4px 14px 0 rgba(245, 158, 11, 0.39);
+    --glass-bg: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.18);
+    --glass-bg-hover: rgba(255,255,255,0.07);
+
+    /* ── Spacing ── */
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+  }
+
+  body {
+    font-family: 'Open Sans', 'Inter', system-ui, sans-serif;
+    background: var(--navy-950);
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    font-size: 18px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', 'Cal Sans', 'Inter', sans-serif;
+  }
+
+  /* ── Floating background particles (subtle) ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 20% 20%, rgba(245,158,11,0.06), transparent),
+      radial-gradient(ellipse 500px 500px at 80% 80%, rgba(245,158,11,0.04), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Header ── */
+  .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .app-header h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .app-header p {
+    font-size: 0.85rem;
+    color: var(--slate-400);
+    margin-top: 2px;
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: var(--gold-500);
+    color: var(--navy-900);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-glow);
+    min-height: 48px;
+  }
+  .btn-print:hover {
+    background: var(--gold-400);
+    box-shadow: var(--shadow-glow-lg);
+    transform: scale(1.02);
+  }
+  .btn-print:active { transform: scale(0.95); }
+  .btn-print svg { width: 20px; height: 20px; }
+
+  /* ── Layout ── */
+  .app-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: calc(100vh - 72px);
+    position: relative;
+    z-index: 1;
+  }
+  .form-panel {
+    padding: 32px;
+    overflow-y: auto;
+    max-height: calc(100vh - 72px);
+  }
+  .chart-panel {
+    padding: 32px;
+    background: var(--navy-900);
+    border-left: 1px solid var(--glass-border);
+    overflow-y: auto;
+    max-height: calc(100vh - 72px);
+  }
+
+  /* ── Glassmorphism Form Cards ── */
+  .form-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 0.2s;
+  }
+  .form-card:hover {
+    border-color: rgba(255,255,255,0.25);
+  }
+  .form-card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 18px;
+  }
+  .form-card h2 .step-num {
+    color: var(--gold-500);
+    margin-right: 4px;
+  }
+  .form-card label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--slate-400);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .form-card textarea,
+  .form-card input[type="text"],
+  .form-card input[type="date"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--navy-600);
+    border-radius: var(--radius-sm);
+    font-size: 1.05rem;
+    font-family: 'Open Sans', system-ui, sans-serif;
+    color: #fff;
+    background: var(--navy-900);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+    min-height: 48px;
+  }
+  .form-card textarea::placeholder,
+  .form-card input::placeholder {
+    color: var(--slate-500);
+  }
+  .form-card textarea:focus,
+  .form-card input:focus {
+    outline: none;
+    border-color: var(--gold-500);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  }
+  .form-card textarea { min-height: 110px; }
+
+  /* ── Meta fields ── */
+  .meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  /* ── Action step input row ── */
+  .action-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .action-input-row .field-text { flex: 1; min-width: 150px; }
+  .action-input-row .field-date { width: 160px; }
+  .btn-add {
+    padding: 12px 22px;
+    background: var(--gold-500);
+    color: var(--navy-900);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-glow);
+    min-height: 48px;
+  }
+  .btn-add:hover { background: var(--gold-400); box-shadow: var(--shadow-glow-lg); transform: scale(1.02); }
+  .btn-add:active { transform: scale(0.95); }
+
+  /* ── Action step list ── */
+  .action-list { list-style: none; }
+  .action-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--navy-800);
+    border: 1px solid var(--navy-700);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    transition: all 0.2s;
+  }
+  .action-item.completed {
+    background: rgba(34,197,94,0.08);
+    border-color: rgba(34,197,94,0.3);
+  }
+  .action-item.completed .action-text { text-decoration: line-through; color: var(--slate-500); }
+  .action-item .drag-handle {
+    cursor: grab;
+    color: var(--slate-500);
+    font-size: 1.1rem;
+    user-select: none;
+    line-height: 1;
+  }
+  .action-item .action-check {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--gold-500);
+    cursor: pointer;
+    flex-shrink: 0;
+    min-width: 22px;
+    min-height: 22px;
+  }
+  .action-item .action-text {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--slate-300);
+  }
+  .action-item .action-due {
+    font-size: 0.82rem;
+    color: var(--slate-500);
+    white-space: nowrap;
+  }
+  .action-item .btn-delete {
+    background: none;
+    border: none;
+    color: var(--slate-500);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 6px;
+    border-radius: 8px;
+    transition: all 0.15s;
+    line-height: 1;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .action-item .btn-delete:hover { color: var(--error-light); background: rgba(239,68,68,0.1); }
+
+  .empty-msg {
+    text-align: center;
+    color: var(--slate-500);
+    font-size: 0.9rem;
+    padding: 18px 0;
+  }
+
+  /* ── Milestones ── */
+  .milestone-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .milestone-input-row .field-text { flex: 1; min-width: 150px; }
+  .milestone-input-row .field-date { width: 160px; }
+  .milestone-list { list-style: none; }
+  .milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--navy-800);
+    border: 1px solid var(--navy-700);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+  }
+  .milestone-item.completed { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
+  .milestone-item.completed .milestone-text { text-decoration: line-through; color: var(--slate-500); }
+  .milestone-item .milestone-check {
+    width: 22px; height: 22px;
+    accent-color: var(--gold-500);
+    cursor: pointer; flex-shrink: 0;
+  }
+  .milestone-item .milestone-text { flex: 1; font-size: 1rem; color: var(--slate-300); }
+  .milestone-item .milestone-due { font-size: 0.82rem; color: var(--slate-500); white-space: nowrap; }
+  .milestone-item .btn-delete {
+    background: none; border: none; color: var(--slate-500); cursor: pointer;
+    font-size: 1.1rem; padding: 6px; border-radius: 8px; line-height: 1;
+    transition: all 0.15s; min-width: 36px; min-height: 36px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .milestone-item .btn-delete:hover { color: var(--error-light); background: rgba(239,68,68,0.1); }
+
+  /* ── Chart Preview ── */
+  .chart-preview { max-width: 580px; margin: 0 auto; }
+
+  .chart-vision-box {
+    background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(251,191,36,0.06));
+    border: 2px solid rgba(245,158,11,0.4);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    text-align: center;
+    margin-bottom: 8px;
+    box-shadow: 0 0 20px rgba(245,158,11,0.08);
+  }
+  .chart-vision-box .chart-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-500);
+    margin-bottom: 10px;
+  }
+  .chart-vision-box .chart-value {
+    font-size: 1.05rem;
+    color: var(--slate-300);
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+  }
+
+  /* Tension connector */
+  .tension-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 0;
+    position: relative;
+  }
+  .tension-line {
+    width: 2px;
+    height: 18px;
+    background: linear-gradient(to bottom, var(--gold-500), var(--navy-700));
+  }
+  .tension-badge {
+    display: inline-block;
+    padding: 5px 16px;
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: var(--radius-full);
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-400);
+    background: var(--navy-800);
+    box-shadow: 0 0 12px rgba(245,158,11,0.1);
+  }
+
+  /* Chart action steps */
+  .chart-steps { margin: 8px 0; }
+  .chart-step-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.2s;
+    cursor: pointer;
+    min-height: 48px;
+  }
+  .chart-step-item:hover {
+    border-color: rgba(245,158,11,0.3);
+    background: var(--glass-bg-hover);
+  }
+  .chart-step-item.completed {
+    background: rgba(34,197,94,0.06);
+    border-color: rgba(34,197,94,0.25);
+  }
+  .chart-step-item.completed .chart-step-text { text-decoration: line-through; color: var(--slate-500); }
+  .chart-step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--navy-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .chart-step-item.completed .chart-step-circle {
+    border-color: var(--success);
+    background: var(--success);
+  }
+  .chart-step-circle .check-icon { display: none; }
+  .chart-step-item.completed .chart-step-circle .check-icon { display: block; }
+  .chart-step-text { flex: 1; font-size: 1rem; color: var(--slate-300); }
+  .chart-step-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--slate-500);
+    min-width: 20px;
+    text-align: right;
+  }
+  .chart-step-due {
+    font-size: 0.78rem;
+    color: var(--slate-500);
+    white-space: nowrap;
+  }
+
+  /* Chart milestones */
+  .chart-milestones-section { margin: 14px 0 8px; }
+  .chart-milestones-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--slate-500);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .chart-milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: transparent;
+    border: 1px dashed var(--navy-700);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: var(--slate-400);
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 48px;
+  }
+  .chart-milestone-item:hover { border-color: var(--gold-500); }
+  .chart-milestone-item.completed {
+    background: rgba(34,197,94,0.06);
+    border-color: rgba(34,197,94,0.25);
+    border-style: solid;
+  }
+  .chart-milestone-item.completed .chart-milestone-text { text-decoration: line-through; color: var(--slate-500); }
+  .chart-milestone-diamond {
+    width: 10px; height: 10px;
+    background: var(--gold-500);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    transition: background 0.2s;
+    opacity: 0.5;
+  }
+  .chart-milestone-item.completed .chart-milestone-diamond { background: var(--success); opacity: 1; }
+  .chart-milestone-text { flex: 1; }
+  .chart-milestone-due { font-size: 0.78rem; color: var(--slate-500); }
+
+  .chart-reality-box {
+    background: var(--navy-800);
+    border: 2px solid var(--navy-700);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .chart-reality-box .chart-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--slate-500);
+    margin-bottom: 10px;
+  }
+  .chart-reality-box .chart-value {
+    font-size: 1.05rem;
+    color: var(--slate-400);
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+  }
+
+  /* Chart header info */
+  .chart-header-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .chart-header-info .chart-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .chart-header-info .chart-meta {
+    font-size: 0.85rem;
+    color: var(--slate-500);
+    margin-top: 4px;
+  }
+
+  .chart-empty-placeholder {
+    text-align: center;
+    color: var(--slate-500);
+    font-size: 0.9rem;
+    padding: 10px 0;
+    font-style: italic;
+  }
+
+  /* ── PDF-only styles (light theme for print) ── */
+  #pdf-output {
+    display: none;
+    font-family: 'Open Sans', 'Inter', system-ui, sans-serif;
+    background: #fff;
+    color: #1E293B;
+    padding: 40px;
+    max-width: 800px;
+  }
+  #pdf-output .pdf-header {
+    text-align: center;
+    border-bottom: 3px solid var(--gold-500);
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+  }
+  #pdf-output .pdf-header h1 {
+    font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: var(--navy-900);
+  }
+  #pdf-output .pdf-header .pdf-meta {
+    font-size: 0.9rem;
+    color: var(--slate-500);
+    margin-top: 6px;
+  }
+
+  #pdf-output .pdf-section {
+    margin-bottom: 22px;
+    page-break-inside: avoid;
+  }
+  #pdf-output .pdf-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-600);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  #pdf-output .pdf-box {
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+  }
+  #pdf-output .pdf-vision-box {
+    background: #FFFBEB;
+    border: 1px solid var(--gold-300);
+  }
+  #pdf-output .pdf-reality-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+  }
+
+  #pdf-output .pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  #pdf-output .pdf-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #F8FAFC;
+    border-bottom: 2px solid #CBD5E1;
+    font-size: 0.72rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--slate-500);
+  }
+  #pdf-output .pdf-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #E5E7EB;
+    vertical-align: top;
+  }
+  #pdf-output .pdf-table .status-cell { text-align: center; font-size: 1.2rem; }
+  #pdf-output .pdf-table tr.completed-row td { color: var(--slate-400); }
+  #pdf-output .pdf-table tr.completed-row .action-col { text-decoration: line-through; }
+
+  #pdf-output .pdf-milestone-list { list-style: none; padding: 0; }
+  #pdf-output .pdf-milestone-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 0.95rem;
+  }
+  #pdf-output .pdf-milestone-list .ms-status { font-size: 1.2rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .app-layout { grid-template-columns: 1fr; }
+    .chart-panel {
+      border-left: none;
+      border-top: 1px solid var(--glass-border);
+      max-height: none;
+    }
+    .form-panel { max-height: none; }
+    .app-header { padding: 14px 20px; }
+    .form-panel, .chart-panel { padding: 20px; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; color: #1E293B; }
+    body::before { display: none; }
+    .app-header, .form-panel { display: none; }
+    .app-layout { grid-template-columns: 1fr; }
+    .chart-panel { border: none; background: #fff; padding: 20px; max-height: none; }
+  }
+
+  /* ── Subtle glow animation for the vision box ── */
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(245,158,11,0.08); }
+    50% { box-shadow: 0 0 30px rgba(245,158,11,0.14); }
+  }
+  .chart-vision-box { animation: glowPulse 3s ease-in-out infinite; }
+
+  /* ── Scrollbar styling ── */
+  .form-panel::-webkit-scrollbar,
+  .chart-panel::-webkit-scrollbar { width: 6px; }
+  .form-panel::-webkit-scrollbar-track,
+  .chart-panel::-webkit-scrollbar-track { background: transparent; }
+  .form-panel::-webkit-scrollbar-thumb,
+  .chart-panel::-webkit-scrollbar-thumb {
+    background: var(--navy-700);
+    border-radius: 3px;
+  }
+  .form-panel::-webkit-scrollbar-thumb:hover,
+  .chart-panel::-webkit-scrollbar-thumb:hover { background: var(--navy-600); }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="app-header">
+  <div>
+    <h1>Structural Tension Chart</h1>
+    <p>Define your vision, acknowledge reality, and map the steps.</p>
+  </div>
+  <button class="btn-print" id="btnPrint" title="Generate PDF">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m0 0a48.09 48.09 0 0 1 18.5 0m-18.5 0V6.375c0-.621.504-1.125 1.125-1.125h15.75c.621 0 1.125.504 1.125 1.125v2.034"/></svg>
+    Print / Save PDF
+  </button>
+</header>
+
+<!-- Main layout -->
+<div class="app-layout">
+
+  <!-- ─── FORM PANEL ─── -->
+  <div class="form-panel">
+
+    <!-- Meta info -->
+    <div class="form-card">
+      <h2><span class="step-num">0.</span> Your Information</h2>
+      <div class="meta-row">
+        <div>
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" placeholder="Jane Doe">
+        </div>
+        <div>
+          <label for="chartDate">Date</label>
+          <input type="date" id="chartDate">
+        </div>
+      </div>
+      <label for="goalTitle">Goal / Chart Title</label>
+      <input type="text" id="goalTitle" placeholder="e.g. Achieve Optimal Health by December">
+    </div>
+
+    <!-- Vision -->
+    <div class="form-card">
+      <h2><span class="step-num">1.</span> Define the Goal</h2>
+      <label for="visionText">Vision / Desired Future</label>
+      <textarea id="visionText" placeholder="Describe what success looks like. Be specific and measurable..."></textarea>
+      <div style="margin-top:14px">
+        <label for="targetDate">Target Date</label>
+        <input type="date" id="targetDate">
+      </div>
+      <div style="margin-top:14px">
+        <label for="whyMatters">Why This Matters</label>
+        <textarea id="whyMatters" placeholder="What motivates you to achieve this goal?" style="min-height:70px"></textarea>
+      </div>
+    </div>
+
+    <!-- Current Reality -->
+    <div class="form-card">
+      <h2><span class="step-num">2.</span> Acknowledge Reality</h2>
+      <label for="realityText">Current Reality</label>
+      <textarea id="realityText" placeholder="Honestly describe where you are right now..."></textarea>
+    </div>
+
+    <!-- Action Plan -->
+    <div class="form-card">
+      <h2><span class="step-num">3.</span> Action Plan</h2>
+      <p style="font-size:0.9rem;color:var(--slate-500);margin-bottom:16px">What steps will resolve the tension between reality and your vision?</p>
+      <div class="action-input-row">
+        <div class="field-text">
+          <input type="text" id="actionInput" placeholder="Add an action step...">
+        </div>
+        <div class="field-date">
+          <label for="actionDue" style="margin-bottom:4px">Due:</label>
+          <input type="date" id="actionDue">
+        </div>
+        <button class="btn-add" id="btnAddAction">Add Step</button>
+      </div>
+      <ul class="action-list" id="actionList"></ul>
+      <p class="empty-msg" id="actionEmpty">No action steps yet. Add your first step above.</p>
+    </div>
+
+    <!-- Milestones -->
+    <div class="form-card">
+      <h2><span class="step-num">4.</span> Key Milestones</h2>
+      <p style="font-size:0.9rem;color:var(--slate-500);margin-bottom:16px">Mark the major checkpoints on your path to the goal.</p>
+      <div class="milestone-input-row">
+        <div class="field-text">
+          <input type="text" id="milestoneInput" placeholder="Add a milestone...">
+        </div>
+        <div class="field-date">
+          <label for="milestoneDue" style="margin-bottom:4px">Due:</label>
+          <input type="date" id="milestoneDue">
+        </div>
+        <button class="btn-add" id="btnAddMilestone">Add</button>
+      </div>
+      <ul class="milestone-list" id="milestoneList"></ul>
+      <p class="empty-msg" id="milestoneEmpty">No milestones yet.</p>
+    </div>
+  </div>
+
+  <!-- ─── CHART PANEL (live preview) ─── -->
+  <div class="chart-panel">
+    <div class="chart-preview" id="chartPreview">
+
+      <div class="chart-header-info" id="chartHeaderInfo" style="display:none">
+        <div class="chart-title" id="chartTitle"></div>
+        <div class="chart-meta" id="chartMeta"></div>
+      </div>
+
+      <!-- Vision Box -->
+      <div class="chart-vision-box">
+        <div class="chart-label">Vision / Desired Future</div>
+        <div class="chart-value" id="chartVision">
+          <span class="chart-empty-placeholder">Your vision will appear here...</span>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="tension-connector">
+        <div class="tension-line"></div>
+        <div class="tension-badge">Structural Tension</div>
+        <div class="tension-line"></div>
+      </div>
+
+      <!-- Action Steps in chart -->
+      <div class="chart-steps" id="chartSteps"></div>
+
+      <!-- Milestones in chart -->
+      <div class="chart-milestones-section" id="chartMilestonesSection" style="display:none">
+        <div class="chart-milestones-label">Milestones</div>
+        <div id="chartMilestones"></div>
+      </div>
+
+      <!-- Connector -->
+      <div class="tension-connector">
+        <div class="tension-line"></div>
+      </div>
+
+      <!-- Reality Box -->
+      <div class="chart-reality-box">
+        <div class="chart-label">Current Reality</div>
+        <div class="chart-value" id="chartReality">
+          <span class="chart-empty-placeholder">Your current reality will appear here...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PDF OUTPUT (hidden, used for generation) ─── -->
+<div id="pdf-output">
+  <div class="pdf-header">
+    <h1 id="pdfTitle">Structural Tension Chart</h1>
+    <div class="pdf-meta" id="pdfMeta"></div>
+  </div>
+
+  <div class="pdf-section" id="pdfMotivationSection" style="display:none">
+    <div class="pdf-section-title">Why This Matters</div>
+    <div class="pdf-box pdf-vision-box" id="pdfMotivation" style="background:#FFFBEB;border-color:#FCD34D"></div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title">Vision / Desired Future</div>
+    <div class="pdf-box pdf-vision-box" id="pdfVision"></div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title">Current Reality</div>
+    <div class="pdf-box pdf-reality-box" id="pdfReality"></div>
+  </div>
+
+  <div class="pdf-section" id="pdfActionsSection">
+    <div class="pdf-section-title">Action Steps</div>
+    <table class="pdf-table">
+      <thead>
+        <tr><th style="width:36px"></th><th>#</th><th>Action</th><th>Due Date</th></tr>
+      </thead>
+      <tbody id="pdfActionsBody"></tbody>
+    </table>
+  </div>
+
+  <div class="pdf-section" id="pdfMilestonesSection" style="display:none">
+    <div class="pdf-section-title">Key Milestones</div>
+    <ul class="pdf-milestone-list" id="pdfMilestonesList"></ul>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── State ──
+  let actions = [];
+  let milestones = [];
+  let nextActionId = 1;
+  let nextMilestoneId = 1;
+
+  // ── DOM refs ──
+  const $ = id => document.getElementById(id);
+
+  const userName = $('userName');
+  const chartDate = $('chartDate');
+  const goalTitle = $('goalTitle');
+  const visionText = $('visionText');
+  const targetDate = $('targetDate');
+  const whyMatters = $('whyMatters');
+  const realityText = $('realityText');
+  const actionInput = $('actionInput');
+  const actionDue = $('actionDue');
+  const actionList = $('actionList');
+  const actionEmpty = $('actionEmpty');
+  const milestoneInput = $('milestoneInput');
+  const milestoneDue = $('milestoneDue');
+  const milestoneList = $('milestoneList');
+  const milestoneEmpty = $('milestoneEmpty');
+
+  // Chart preview refs
+  const chartHeaderInfo = $('chartHeaderInfo');
+  const chartTitleEl = $('chartTitle');
+  const chartMetaEl = $('chartMeta');
+  const chartVision = $('chartVision');
+  const chartReality = $('chartReality');
+  const chartSteps = $('chartSteps');
+  const chartMilestonesSection = $('chartMilestonesSection');
+  const chartMilestones = $('chartMilestones');
+
+  // ── Init ──
+  chartDate.valueAsDate = new Date();
+  actionDue.valueAsDate = new Date();
+  milestoneDue.valueAsDate = new Date();
+
+  // ── Live preview updates ──
+  function updateChartPreview() {
+    const name = userName.value.trim();
+    const date = chartDate.value;
+    const title = goalTitle.value.trim();
+    const tDate = targetDate.value;
+
+    if (title || name) {
+      chartHeaderInfo.style.display = '';
+      chartTitleEl.textContent = title || 'Untitled Chart';
+      let meta = [];
+      if (name) meta.push(name);
+      if (date) meta.push(formatDate(date));
+      if (tDate) meta.push('Target: ' + formatDate(tDate));
+      chartMetaEl.textContent = meta.join('  \u00B7  ');
+    } else {
+      chartHeaderInfo.style.display = 'none';
+    }
+
+    const v = visionText.value.trim();
+    chartVision.innerHTML = v
+      ? escapeHtml(v)
+      : '<span class="chart-empty-placeholder">Your vision will appear here...</span>';
+
+    const r = realityText.value.trim();
+    chartReality.innerHTML = r
+      ? escapeHtml(r)
+      : '<span class="chart-empty-placeholder">Your current reality will appear here...</span>';
+
+    renderChartSteps();
+    renderChartMilestones();
+  }
+
+  function renderChartSteps() {
+    chartSteps.innerHTML = '';
+    if (actions.length === 0) return;
+
+    for (let i = actions.length - 1; i >= 0; i--) {
+      const a = actions[i];
+      const div = document.createElement('div');
+      div.className = 'chart-step-item' + (a.done ? ' completed' : '');
+      div.dataset.id = a.id;
+      div.innerHTML = `
+        <div class="chart-step-circle">
+          <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="chart-step-text">${escapeHtml(a.text)}</span>
+        ${a.due ? '<span class="chart-step-due">' + formatDate(a.due) + '</span>' : ''}
+        <span class="chart-step-num">${i + 1}</span>
+      `;
+      div.addEventListener('click', () => toggleAction(a.id));
+      chartSteps.appendChild(div);
+    }
+  }
+
+  function renderChartMilestones() {
+    if (milestones.length === 0) {
+      chartMilestonesSection.style.display = 'none';
+      return;
+    }
+    chartMilestonesSection.style.display = '';
+    chartMilestones.innerHTML = '';
+    milestones.forEach(m => {
+      const div = document.createElement('div');
+      div.className = 'chart-milestone-item' + (m.done ? ' completed' : '');
+      div.innerHTML = `
+        <div class="chart-milestone-diamond"></div>
+        <span class="chart-milestone-text">${escapeHtml(m.text)}</span>
+        ${m.due ? '<span class="chart-milestone-due">' + formatDate(m.due) + '</span>' : ''}
+      `;
+      div.addEventListener('click', () => toggleMilestone(m.id));
+      chartMilestones.appendChild(div);
+    });
+  }
+
+  // ── Action steps ──
+  function addAction() {
+    const text = actionInput.value.trim();
+    if (!text) { actionInput.focus(); return; }
+    const due = actionDue.value;
+    actions.push({ id: nextActionId++, text, due, done: false });
+    actionInput.value = '';
+    renderActions();
+    updateChartPreview();
+    actionInput.focus();
+  }
+
+  function removeAction(id) {
+    actions = actions.filter(a => a.id !== id);
+    renderActions();
+    updateChartPreview();
+  }
+
+  function toggleAction(id) {
+    const a = actions.find(a => a.id === id);
+    if (a) a.done = !a.done;
+    renderActions();
+    updateChartPreview();
+  }
+
+  function renderActions() {
+    actionList.innerHTML = '';
+    actionEmpty.style.display = actions.length === 0 ? '' : 'none';
+    actions.forEach(a => {
+      const li = document.createElement('li');
+      li.className = 'action-item' + (a.done ? ' completed' : '');
+      li.innerHTML = `
+        <span class="drag-handle">\u2807</span>
+        <input type="checkbox" class="action-check" ${a.done ? 'checked' : ''}>
+        <span class="action-text">${escapeHtml(a.text)}</span>
+        ${a.due ? '<span class="action-due">' + formatDate(a.due) + '</span>' : ''}
+        <button class="btn-delete" title="Remove">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        </button>
+      `;
+      li.querySelector('.action-check').addEventListener('change', () => toggleAction(a.id));
+      li.querySelector('.btn-delete').addEventListener('click', () => removeAction(a.id));
+      actionList.appendChild(li);
+    });
+  }
+
+  // ── Milestones ──
+  function addMilestone() {
+    const text = milestoneInput.value.trim();
+    if (!text) { milestoneInput.focus(); return; }
+    const due = milestoneDue.value;
+    milestones.push({ id: nextMilestoneId++, text, due, done: false });
+    milestoneInput.value = '';
+    renderMilestones();
+    updateChartPreview();
+    milestoneInput.focus();
+  }
+
+  function removeMilestone(id) {
+    milestones = milestones.filter(m => m.id !== id);
+    renderMilestones();
+    updateChartPreview();
+  }
+
+  function toggleMilestone(id) {
+    const m = milestones.find(m => m.id === id);
+    if (m) m.done = !m.done;
+    renderMilestones();
+    updateChartPreview();
+  }
+
+  function renderMilestones() {
+    milestoneList.innerHTML = '';
+    milestoneEmpty.style.display = milestones.length === 0 ? '' : 'none';
+    milestones.forEach(m => {
+      const li = document.createElement('li');
+      li.className = 'milestone-item' + (m.done ? ' completed' : '');
+      li.innerHTML = `
+        <input type="checkbox" class="milestone-check" ${m.done ? 'checked' : ''}>
+        <span class="milestone-text">${escapeHtml(m.text)}</span>
+        ${m.due ? '<span class="milestone-due">' + formatDate(m.due) + '</span>' : ''}
+        <button class="btn-delete" title="Remove">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
+        </button>
+      `;
+      li.querySelector('.milestone-check').addEventListener('change', () => toggleMilestone(m.id));
+      li.querySelector('.btn-delete').addEventListener('click', () => removeMilestone(m.id));
+      milestoneList.appendChild(li);
+    });
+  }
+
+  // ── PDF Generation ──
+  function generatePDF() {
+    const pdfEl = $('pdf-output');
+    pdfEl.style.display = 'block';
+
+    const title = goalTitle.value.trim() || 'Structural Tension Chart';
+    $('pdfTitle').textContent = title;
+
+    let meta = [];
+    if (userName.value.trim()) meta.push(userName.value.trim());
+    if (chartDate.value) meta.push(formatDate(chartDate.value));
+    if (targetDate.value) meta.push('Target: ' + formatDate(targetDate.value));
+    $('pdfMeta').textContent = meta.join('  \u00B7  ');
+
+    const why = whyMatters.value.trim();
+    if (why) {
+      $('pdfMotivationSection').style.display = '';
+      $('pdfMotivation').textContent = why;
+    } else {
+      $('pdfMotivationSection').style.display = 'none';
+    }
+
+    $('pdfVision').textContent = visionText.value.trim() || '(Not specified)';
+    $('pdfReality').textContent = realityText.value.trim() || '(Not specified)';
+
+    const tbody = $('pdfActionsBody');
+    tbody.innerHTML = '';
+    if (actions.length === 0) {
+      $('pdfActionsSection').style.display = 'none';
+    } else {
+      $('pdfActionsSection').style.display = '';
+      actions.forEach((a, i) => {
+        const tr = document.createElement('tr');
+        if (a.done) tr.className = 'completed-row';
+        tr.innerHTML = `
+          <td class="status-cell">${a.done ? '&#9745;' : '&#9744;'}</td>
+          <td>${i + 1}</td>
+          <td class="action-col">${escapeHtml(a.text)}</td>
+          <td>${a.due ? formatDate(a.due) : '\u2014'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    const msList = $('pdfMilestonesList');
+    msList.innerHTML = '';
+    if (milestones.length === 0) {
+      $('pdfMilestonesSection').style.display = 'none';
+    } else {
+      $('pdfMilestonesSection').style.display = '';
+      milestones.forEach(m => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span class="ms-status">${m.done ? '&#9745;' : '&#9744;'}</span>
+          <span>${escapeHtml(m.text)}</span>
+          ${m.due ? '<span style="margin-left:auto;font-size:0.85rem;color:#94A3B8">' + formatDate(m.due) + '</span>' : ''}
+        `;
+        msList.appendChild(li);
+      });
+    }
+
+    const opt = {
+      margin: [0.4, 0.5, 0.4, 0.5],
+      filename: (title.replace(/[^a-zA-Z0-9]/g, '_') || 'structural_tension_chart') + '.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    html2pdf().set(opt).from(pdfEl).save().then(() => {
+      pdfEl.style.display = 'none';
+    });
+  }
+
+  // ── Helpers ──
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+  }
+
+  // ── Event Listeners ──
+  $('btnAddAction').addEventListener('click', addAction);
+  actionInput.addEventListener('keydown', e => { if (e.key === 'Enter') addAction(); });
+
+  $('btnAddMilestone').addEventListener('click', addMilestone);
+  milestoneInput.addEventListener('keydown', e => { if (e.key === 'Enter') addMilestone(); });
+
+  $('btnPrint').addEventListener('click', generatePDF);
+
+  [userName, chartDate, goalTitle, visionText, targetDate, whyMatters, realityText].forEach(el => {
+    el.addEventListener('input', updateChartPreview);
+  });
+
+  updateChartPreview();
+})();
+</script>
+</body>
+</html>
